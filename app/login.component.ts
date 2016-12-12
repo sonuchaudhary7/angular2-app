@@ -12,21 +12,28 @@ export class LoginComponent {
     @ViewChild('loginEmail') loginEmail:ElementRef
     @ViewChild('loginPass') loginPass:ElementRef
     
-    private posts;
+    private authServiceResponse;
+    private authenticaedUserDetails;
 
     constructor(private loginS: LoginService) {}
 
     authUser() {
         
         let userData = {
-            "email": this.loginEmail.nativeElement.value,
-            "password": this.loginPass.nativeElement.value
+            "password": this.loginPass.nativeElement.value,
+            "email": this.loginEmail.nativeElement.value
         }
-        this.loginS.authUser(userData).subscribe()
 
-        this.loginS.getPosts().subscribe(posts => {
-            this.posts = posts 
+        this.loginS.authUser(userData).subscribe(res => {
+            this.authServiceResponse = res
+            
+            // TO DO: get details of logged in user.
+            this.loginS.getUserDetails(this.authServiceResponse.email, this.authServiceResponse.user_auth_token).subscribe(res1 => {
+                this.authenticaedUserDetails = res1
+                console.log(this.authenticaedUserDetails)
+            })
+            console.log(this.authServiceResponse)
+            
         })
-        // console.log(this.posts)
     }
 }
