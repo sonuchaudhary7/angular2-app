@@ -9,6 +9,9 @@ import {UserDetails} from './getuserdetails.interface'
 
 @Injectable()
 export class LoginService {
+
+    // please change the apis according to you.
+
     private _http = 'http://'
     private apiKey = '?key=classicspecs_dev'
     private getUserApiUrl = '192.168.42.3:5001/2.0/users/';
