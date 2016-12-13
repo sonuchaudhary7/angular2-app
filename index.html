@@ -13,11 +13,23 @@
     <script src="node_modules/rxjs/bundles/Rx.js"></script>
     <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
     <script src="node_modules/angular2/bundles/http.dev.js"></script>
+    <script src="node_modules/angular2/bundles/router.dev.js"></script>
 
     <!-- bootstrap cdn urls -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAHq-qsE3lYzuy-MJ6FtRGQhL40ZjlJvk">
+    </script>
+    <base href="/" >
+    <script>// document.write('<base href="' + document.location + '" />');</script>
+
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+    
+    <link href="style.css" rel="stylesheet" />
     
     <!-- 2. Configure SystemJS -->
     <script>
@@ -38,8 +50,9 @@
   <!-- 3. Display the application -->
   <body>
     <my-app style="text-align:center;width:100%;margin:0 auto;">
-      <div><img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/1f430a36197347.57135ca19bbf5.gif"></div>
+      <div>Loading .. </div>
     </my-app>
+        <div id="googleMap" style="width:500px;height:380px;"></div>
   </body>
 
 </html>
