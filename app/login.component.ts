@@ -12,10 +12,10 @@ export class LoginComponent {
     @ViewChild('loginEmail') loginEmail:ElementRef
     @ViewChild('loginPass') loginPass:ElementRef
     
-    private authServiceResponse;
-    private authenticaedUserDetails;
+    public authServiceResponse;
+    public authenticaedUserDetails;
 
-    constructor(private loginS: LoginService) {}
+    constructor(public loginS: LoginService) {}
 
     authUser() {
         
@@ -26,12 +26,15 @@ export class LoginComponent {
 
         this.loginS.authUser(userData).subscribe(res => {
             this.authServiceResponse = res
+
             
             // TO DO: get details of logged in user.
+            /* 
             this.loginS.getUserDetails(this.authServiceResponse.email, this.authServiceResponse.user_auth_token).subscribe(res1 => {
                 this.authenticaedUserDetails = res1
                 console.log(this.authenticaedUserDetails)
             })
+            */ 
             console.log(this.authServiceResponse)
             
         })

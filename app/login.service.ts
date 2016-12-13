@@ -16,7 +16,7 @@ export class LoginService {
     private apiKey = '?key=classicspecs_dev'
     private getUserApiUrl = '192.168.42.3:5001/2.0/users/';
 
-    private userAuthApiUrl = this._http + '192.168.42.3:5001/2.0/users/auth/'
+    private userAuthApiUrl = this._http + '192.168.42.3:5001/2.0/users/auth/' + this.apiKey
 
     constructor(private http: Http) {}
 
@@ -26,11 +26,12 @@ export class LoginService {
         let headers = new Headers({
 			'Content-Type': 'application/json;charset=utf-8'
 		});
+        headers.append('Access-Control-Allow-Origin','*');
 		let options = new RequestOptions({
 			headers: headers
 		});
         
-        return this.http.post(this.userAuthApiUrl + this.apiKey, body, options)
+        return this.http.post(this.userAuthApiUrl, body, options)
             .map((res: Response)  => res.json().data)
                 .catch((err:any) => Observable.throw(this.handleError(err.json())))
     }
@@ -47,6 +48,12 @@ export class LoginService {
         return this.http.get(url)
             .map(res => res.json().data) 
                 .catch((err:any) => Observable.throw(this.handleError(err.json())))
+    }
+
+    getUsers() {
+        let url = "https://jsonplaceholder.typicode.com/users"
+        return this.http.get(url)
+            .map(res => res.json())
     }
 
 }
