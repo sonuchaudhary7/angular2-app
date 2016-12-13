@@ -29,6 +29,6 @@ export class SiteUsers {
     displayUsersOrNot() {
         if(this._logC.authServiceResponse != undefined)
             return 'block'
-        return 'none'
+        return 'block'
     }
 }

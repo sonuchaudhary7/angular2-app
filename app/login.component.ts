@@ -11,9 +11,10 @@ import {LoginService} from './login.service'
 export class LoginComponent {
     @ViewChild('loginEmail') loginEmail:ElementRef
     @ViewChild('loginPass') loginPass:ElementRef
-    
+
     public authServiceResponse;
     public authenticaedUserDetails;
+    private loginAlert
 
     constructor(public loginS: LoginService) {}
 
@@ -23,6 +24,8 @@ export class LoginComponent {
             "password": this.loginPass.nativeElement.value,
             "email": this.loginEmail.nativeElement.value
         }
+        if(!this.validations())
+            return
 
         this.loginS.authUser(userData).subscribe(res => {
             this.authServiceResponse = res
@@ -35,8 +38,38 @@ export class LoginComponent {
                 console.log(this.authenticaedUserDetails)
             })
             */ 
+            // this.router.navigate(['./Users']);
+            window.location.href = '/users'
             console.log(this.authServiceResponse)
             
         })
     }
+
+    displayHideThings() {
+        if(this.loginAlert != undefined || this.loginAlert != null)
+            return 'block'
+        return 'none'
+    }
+
+    validations() {
+        if(this.loginEmail.nativeElement.value == '') {
+            this.loginAlert = "Please enter email address."
+            return false
+        }
+
+        if(this.loginPass.nativeElement.value == '') {
+            this.loginAlert = "Please enter password."
+            return false
+        }
+
+        let EMAIL_REGEXP = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+        if (!EMAIL_REGEXP.test(this.loginEmail.nativeElement.value)) {
+            this.loginAlert = "Please enter valid email address."
+            return false
+        }
+        this.loginAlert = null
+        return true
+    }
+
 }

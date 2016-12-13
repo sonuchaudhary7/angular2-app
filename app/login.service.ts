@@ -20,19 +20,19 @@ export class LoginService {
 
     constructor(private http: Http) {}
 
-    authUser(userJson):Observable<LoginInterface> {
+    authUser(userJson) {
         let body = JSON.stringify(userJson)
 
         let headers = new Headers({
-			'Content-Type': 'application/json;charset=utf-8'
+			'Content-Type': 'application/json'
 		});
-        headers.append('Access-Control-Allow-Origin','*');
+        
 		let options = new RequestOptions({
 			headers: headers
 		});
         
-        return this.http.post(this.userAuthApiUrl, body, options)
-            .map((res: Response)  => res.json().data)
+        return this.http.post('http://reqres.in/api/login', body, {headers: headers})
+            .map((res: Response)  => res.json())
                 .catch((err:any) => Observable.throw(this.handleError(err.json())))
     }
 

@@ -1,17 +1,25 @@
+/*!
+ * Start Bootstrap - The Big Picture (http://startbootstrap.com/)
+ * Copyright 2013-2016 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ */
 
-body{
-    background:#eee;    
+body {
+	margin-top: 50px;
+	margin-bottom: 50px;
+	background: none;
 }
+
 .main-box.no-header {
     padding-top: 20px;
 }
 .main-box {
     background: #FFFFFF;
-    -webkit-box-shadow: 1px 1px 2px 0 #CCCCCC;
-    -moz-box-shadow: 1px 1px 2px 0 #CCCCCC;
-    -o-box-shadow: 1px 1px 2px 0 #CCCCCC;
-    -ms-box-shadow: 1px 1px 2px 0 #CCCCCC;
-    box-shadow: 1px 1px 2px 0 #CCCCCC;
+    -webkit-box-shadow: 0px 0px 0px 1px #CCCCCC;
+    -moz-box-shadow: 0px 0px 0px 1px #CCCCCC;
+    -o-box-shadow: 0px 0px 0px 1px #CCCCCC;
+    -ms-box-shadow: 0px 0px 0px 1px #CCCCCC;
+    box-shadow: 0px 0px 0px 1px #CCCCCC;
     margin-bottom: 16px;
     -webikt-border-radius: 3px;
     -moz-border-radius: 3px;
