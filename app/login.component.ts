@@ -1,6 +1,7 @@
 import {Component, ViewChild, ElementRef, Renderer} from 'angular2/core'
 import {LoginInterface} from './login.interface'
 import {LoginService} from './login.service'
+// import {Router, RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router'
 
 @Component({
     selector: 'login',
@@ -30,6 +31,9 @@ export class LoginComponent {
         this.loginS.authUser(userData).subscribe(res => {
             this.authServiceResponse = res
 
+            localStorage.setItem("user", this.authServiceResponse.token);
+            // this.router.navigate(['./Users']);
+
             
             // TO DO: get details of logged in user.
             /* 
@@ -40,7 +44,7 @@ export class LoginComponent {
             */ 
             // this.router.navigate(['./Users']);
             window.location.href = '/users'
-            console.log(this.authServiceResponse)
+            console.log(this.authServiceResponse.token)
             
         })
     }
