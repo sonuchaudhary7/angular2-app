@@ -24,14 +24,17 @@ export class LoginService {
         let body = JSON.stringify(userJson)
 
         let headers = new Headers({
-			'Content-Type': 'application/json'
+			'Content-Type': 'application/json;charset=utf-8'
 		});
         
 		let options = new RequestOptions({
 			headers: headers
 		});
         
-        return this.http.post('http://reqres.in/api/login', body, {headers: headers})
+        // let url = this.userAuthApiUrl
+        let url = 'http://reqres.in/api/login'
+
+        return this.http.post(url, body, {headers: headers})
             .map((res: Response)  => res.json())
                 .catch((err:any) => Observable.throw(this.handleError(err.json())))
     }

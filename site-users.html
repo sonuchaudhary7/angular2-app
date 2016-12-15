@@ -15,7 +15,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="#user of users">
+                                <tr *ngFor="#user of users; #i = index; #last = last">
                                     <td>
                                         <img src="http://bootdey.com/img/Content/user_1.jpg" alt="">
                                         <span class="user-link">{{user.name}}</span>
@@ -29,22 +29,10 @@
                                         <a href="mailto:{{user.email}}">{{user.email}}</a>
                                     </td>
                                     <td style="width: 20%;">
-                                        <a href="#" class="table-link">
+                                        <a href="#myModal{{i}}" data-toggle="modal" class="table-link">
                                             <span class="fa-stack">
                                                 <i class="fa fa-square fa-stack-2x"></i>
                                                 <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
-                                            </span>
-                                        </a>
-                                        <a href="#" class="table-link">
-                                            <span class="fa-stack">
-                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
-                                            </span>
-                                        </a>
-                                        <a href="#" class="table-link danger">
-                                            <span class="fa-stack">
-                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
                                             </span>
                                         </a>
                                     </td>
@@ -53,6 +41,46 @@
                         </table>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div *ngFor="#userModal of users; #i = index; #last = last" id="myModal{{i}}" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-left">{{userModal.name}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row text-left">
+                    <div class="col-md-6">
+                        <h3>Address</h3>
+                        <p>
+                            {{userModal.address.street}}, {{userModal.address.suite}}
+                        </p>
+                        <p>
+                            {{userModal.address.city}}, {{userModal.address.zipcode}}
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <h3>Company</h3>
+                        <p>
+                            {{userModal.company.name}}
+                        </p>
+                        <p><small>{{userModal.company.catchPhrase}}</small></p>
+                        <p>
+                            {{userModal.company.bs}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Save Changes</button>
             </div>
         </div>
     </div>

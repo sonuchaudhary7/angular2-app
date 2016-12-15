@@ -2,11 +2,7 @@ import {Component} from 'angular2/core';
 import {LoginComponent} from './login.component'
 import {SiteUsers} from './siteusers.component'
 import {HomeComponent} from './home.component'
-import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
-
-
-declare var google : any
-declare var map : any
+import {RouteConfig, ROUTER_DIRECTIVES, Router} from 'angular2/router';
 
 @RouteConfig([
     {
@@ -41,8 +37,9 @@ declare var map : any
                     </div>
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-9"> 
                         <ul class="nav navbar-nav">
-                            <li class="active"><a [routerLink]="['Login']">Login</a></li>
-                            <li><a [routerLink]="['Users']">Users</a></li> 
+                            <li *ngIf="authenticateUser()"><a [routerLink]="['Login']">Login</a></li>
+                            <li *ngIf="!authenticateUser()"><a [routerLink]="['Users']">Users</a></li>
+                            <li *ngIf="!authenticateUser()"><a style="cursor:pointer;" (click)="logout()">Logout</a></li> 
                         </ul>
                     </div>
                 </div>
@@ -53,38 +50,22 @@ declare var map : any
     directives: [ROUTER_DIRECTIVES]
 })
 export class AppComponent { 
-    
-    /* 
-    private map
-    ngOnInit() {
-        var mapProp = {
-            center: {lat: -25.363, lng: 131.044},
-            zoom: 5,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        this.map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
-        this.additionalMapInfo()
+    private user
+
+    constructor(private _router: Router) {
+        this.user = localStorage.getItem('user')
     }
 
-    additionalMapInfo() {
-        // set marker
-        let marker = new google.maps.Marker({
-            position: {lat: -25.363, lng: 131.044},
-            map: this.map
-        });
-
-        //set info window
-        var infowindow = new google.maps.InfoWindow({
-            content: "Text goes here"
-        });
-
-        //set click event on marker to pop up info-window
-        marker.addListener('click', function() {
-            infowindow.open(this.map, marker);
-        });
-
+    authenticateUser() {
+        if(this.user != null || this.user != undefined) {
+            return false
+            // this._router.navigate(['./Login'])
+        }
+        return true
     }
 
-    */ 
-
+    logout() {
+        localStorage.removeItem('user')
+        window.location.href = "/login"
+    }
 }
